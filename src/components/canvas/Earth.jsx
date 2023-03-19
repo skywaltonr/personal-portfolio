@@ -15,7 +15,7 @@ const EarthCanvas = () =>{
     <Canvas
     shadows
     frameloop='demand'
-    gL={{preserveDrawingBuffer:true}}
+    gl={{preserveDrawingBuffer:true}}
     camera={{}}
     >
       <Suspense fallback={<CanvasLoader />} />

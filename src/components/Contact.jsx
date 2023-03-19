@@ -14,12 +14,19 @@ const Contact = () => {
     message: ''
   })
   const [loading, setLoading] = useState(false)
-  const handleChange = () =>{
-
+  const handleChange = (e) =>{
+    const {name,value} = e.target;
+    setForm({...form, [name]: value})
   }
-  const onSubmit = () =>{
-
+  const onSubmit = (e) =>{
+    e.preventDefault()
+    setLoading(true)
+    emailljs.send("service_euh24gd","template_vc7gqo5", {
+      from_name: form.name, to_name: 'Ryan', from_email: form.email, to_email:'ryanwalton1999@gmail.com', message:form.message
+    }, "zKq_fvMHU6zEByRW6").then(()=> {setLoading(false);alert('Thank you! I will get back to you ASAP!');setForm({name: '', email: '', message: ''})},
+    (error)=>{setLoading(false); console.log(error); alert('Something went wrong!')})
   }
+  //template_fc4fl12
   return (
     <div className='xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden'>
       <motion.div variants={slideIn('left', 'tween', 0.2,1)} className='flex-[0.75] bg-black-100 p-8 rounded-2xl'>
